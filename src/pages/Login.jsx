@@ -1,8 +1,8 @@
-// src/pages/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
+import { Github, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { loginSuccess } from '../store/slices/authSlice';
 import loginImg from '../../src/assets/login.png';
 
@@ -18,6 +18,26 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const validatePassword = (password) => {
+    const minLength = password.length >= 8;
+    const hasCapital = /[A-Z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    
+    return {
+      isValid: minLength && hasCapital && hasNumber && hasSymbol,
+      error: !minLength 
+        ? 'Password must be at least 8 characters long'
+        : !hasCapital
+        ? 'Password must contain at least one capital letter'
+        : !hasNumber
+        ? 'Password must contain at least one number'
+        : !hasSymbol
+        ? 'Password must contain at least one symbol'
+        : ''
+    };
+  };
+
   const validateForm = () => {
     const newErrors = {};
     
@@ -29,6 +49,11 @@ const Login = () => {
 
     if (!password) {
       newErrors.password = 'Password is required';
+    } else {
+      const passwordValidation = validatePassword(password);
+      if (!passwordValidation.isValid) {
+        newErrors.password = passwordValidation.error;
+      }
     }
 
     setErrors(newErrors);
@@ -37,10 +62,28 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (email === DEMO_CREDENTIALS.email && password === DEMO_CREDENTIALS.password) {
+      dispatch(loginSuccess({ email }));
+      navigate('/home');
+      return;
+    }
+    
     if (validateForm()) {
       dispatch(loginSuccess({ email }));
       navigate('/home');
     }
+  };
+
+  const fillDemoCredentials = () => {
+    setEmail(DEMO_CREDENTIALS.email);
+    setPassword(DEMO_CREDENTIALS.password);
+    setErrors({});
+  };
+
+  const handleSocialLogin = (platform) => {
+    // Placeholder for social login implementation
+    console.log(`Logging in with ${platform}`);
   };
 
   return (
@@ -78,6 +121,9 @@ const Login = () => {
                   <Form.Control.Feedback type="invalid">
                     {errors.password}
                   </Form.Control.Feedback>
+                  <Form.Text className="text-muted">
+                    Password must be at least 8 characters long with 1 capital letter, 1 number, and 1 symbol.
+                  </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -96,9 +142,50 @@ const Login = () => {
                 </div>
               </Form>
 
+              {/* Social Login Section */}
+              <div className="mt-4">
+                <div className="text-center position-relative mb-4">
+                  <hr className="my-2" />
+                  <span className="position-absolute top-50 translate-middle bg-white px-3 text-muted" style={{ left: '50%' }}>
+                    Or Sign In With
+                  </span>
+                </div>
+                
+                <div className="d-flex justify-content-center gap-3">
+                  <Button 
+                    variant="outline-secondary" 
+                    className="social-login-btn"
+                    onClick={() => handleSocialLogin('github')}
+                  >
+                    <Github size={20} />
+                  </Button>
+                  <Button 
+                    variant="outline-secondary" 
+                    className="social-login-btn"
+                    onClick={() => handleSocialLogin('facebook')}
+                  >
+                    <Facebook size={20} />
+                  </Button>
+                  <Button 
+                    variant="outline-secondary" 
+                    className="social-login-btn"
+                    onClick={() => handleSocialLogin('linkedin')}
+                  >
+                    <Linkedin size={20} />
+                  </Button>
+                  <Button 
+                    variant="outline-secondary" 
+                    className="social-login-btn"
+                    onClick={() => handleSocialLogin('twitter')}
+                  >
+                    <Twitter size={20} />
+                  </Button>
+                </div>
+              </div>
+
               <div className="mt-4 pt-3 border-top">
                 <p className="text-center text-muted mb-2">Demo Credentials:</p>
-                <div className="bg-light p-2 rounded text-center">
+                <div className="bg-light p-2 rounded text-center cursor-pointer" onClick={fillDemoCredentials}>
                   <small>Email: {DEMO_CREDENTIALS.email}</small><br />
                   <small>Password: {DEMO_CREDENTIALS.password}</small>
                 </div>

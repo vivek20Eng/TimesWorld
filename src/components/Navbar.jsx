@@ -1,33 +1,26 @@
-// components/Navbar.jsx
+// src/components/Navbar.jsx
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
+import { Container, Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { logout } from '../store/slices/authSlice';
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    localStorage.removeItem('isAuthenticated');
-    navigate('/login');
+    dispatch(logout());
   };
 
   return (
-    <nav className="bg-white shadow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <h1 className="text-xl font-semibold">Countries</h1>
-          </div>
-          <div className="flex items-center">
-            <Button 
-              variant="ghost" 
-              onClick={handleLogout}
-            >
-              Logout
-            </Button>
-          </div>
-        </div>
-      </div>
+    <nav className="custom-navbar mb-4 bg-white shadow-sm">
+      <Container className=" d-flex justify-content-between align-items-center">
+        <h1 className="mb-0">Countries</h1>
+        <Button variant="outline-primary" onClick={handleLogout}>
+          Logout
+        </Button>
+      </Container>
     </nav>
   );
 };
+
+export default Navbar;

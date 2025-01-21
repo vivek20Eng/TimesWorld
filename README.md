@@ -25,11 +25,15 @@ A modern React application showcasing countries information with authentication,
 - Node.js (v14+ recommended)
 - npm or yarn
 
+## 🎨 Figma Design Link
+[![Figma](https://img.shields.io/badge/Figma-Design-blue?style=flat&logo=figma&logoColor=white)](https://www.figma.com/design/tlDhpxrsaByrWlURwcSSLZ/Machine-Test?node-id=1-221&t=S9zaTwmlc3TFbcrf-0)
+
+
 ### Installation
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/react-countries-app.git
+git clone https://github.com/vivek20Eng/TimesWorld.git
 cd react-countries-app
 ```
 
@@ -57,26 +61,6 @@ yarn start
 - **UI Framework**: React Bootstrap
 - **API**: REST Countries API
 
-## 📁 Project Structure
-
-```
-src/
-  ├── components/          # Reusable components
-  │   ├── CountrySlider
-  │   ├── RegionFilter
-  │   └── ProtectedRoute
-  ├── pages/              # Page components
-  │   ├── Login
-  │   └── Home
-  ├── store/              # Redux store setup
-  │   ├── index
-  │   └── slices/
-  │       ├── authSlice
-  │       └── countriesSlice
-  ├── styles/             # Global styles
-  ├── App.js             # Main app component
-  └── index.js           # Entry point
-```
 
 ## 🔒 Authentication
 
@@ -133,33 +117,12 @@ npm start
 
 # Build for production
 npm run build
-
-# Run tests
-npm test
-
-# Eject from Create React App
-npm run eject
 ```
 
-## 📝 Notes
-
-- Ensure all environment variables are properly set
-- Check browser compatibility (supports modern browsers)
-- Review API documentation for any endpoint changes
 
 ## 📫 Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
+Vivek - [@vivek](https://www.linkedin.com/in/vivek-s-abb88a1ab/) - vivek20sv@gmail.com
 
-Project Link: [https://github.com/yourusername/react-countries-app](https://github.com/yourusername/react-countries-app)
+Project Link: [https://github.com/vivek20Eng/TimesWorld](https://github.com/vivek20Eng/TimesWorld)
 
-## 🙏 Acknowledgments
-
-- [REST Countries API](https://restcountries.com/)
-- [React Bootstrap](https://react-bootstrap.github.io/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
-- [React Router](https://reactrouter.com/)
-
----
-
-⭐️ Thank you for checking out this project! If you find it helpful, please consider giving it a star!
