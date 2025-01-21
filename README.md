@@ -1,3 +1,6 @@
+![Project Status](https://img.shields.io/badge/Status-In%20Progress-yellow)
+## 🌐 Live link: [Live Demo](https://times-world-eta.vercel.app/)
+
 # 🌍 React Countries App
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
