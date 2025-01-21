@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import { loginSuccess } from '../store/slices/authSlice';
+import loginImg from '../../src/assets/login.png';
 
 const DEMO_CREDENTIALS = {
   email: 'demo@example.com',
@@ -108,8 +109,8 @@ const Login = () => {
         <Col md={6} className="d-none d-md-block" style={{ background: '#f8f9fa' }}>
           <div className="h-100 d-flex align-items-center justify-content-center">
             <img
-              src="/api/placeholder/600/400"
-              alt="Login illustration"
+              src={loginImg}
+              alt="Login img"
               className="img-fluid"
             />
           </div>
